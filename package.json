@@ -10,11 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "concurrently": "^9.2.1",
+    "express": "^5.2.1",
     "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "react-dom": "^19.2.5",
+    "socket.io": "^4.8.3",
+    "tsx": "^4.21.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
     "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
