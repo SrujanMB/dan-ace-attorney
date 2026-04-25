@@ -7,7 +7,7 @@ import getServerIps from "./utils/network";
 const app = express();
 const httpServer = createServer(app);
 
-const PORT = Number(process.env.SERVER_PORT) || 3000;
+const PORT = 3000;
 const HOST = "0.0.0.0";
 
 const io = new Server(httpServer, {
@@ -17,7 +17,7 @@ const io = new Server(httpServer, {
   },
 });
 
-let state: GameState = {
+const state: GameState = {
   teamA: { name: "Defense", score: 0 },
   teamB: { name: "Prosecution", score: 0 },
   isLocked: false,
@@ -40,7 +40,8 @@ io.on("connection", (socket) => {
       ...data,
       timestamp: Date.now(),
     });
-    
+
+    state.isLocked = false;
   });
 });
 

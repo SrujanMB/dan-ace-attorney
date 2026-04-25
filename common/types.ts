@@ -4,7 +4,9 @@ export interface GameState {
   isLocked: boolean;
 }
 
+export type Team = "A" | "B";
+
 export interface ObjectionPayload {
-  teamId: "A" | "B";
+  teamId: Team;
   userName: string;
 }
