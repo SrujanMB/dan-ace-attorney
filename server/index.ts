@@ -1,7 +1,7 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-import { GameState, ObjectionPayload } from "../common/types";
+import { GameState, ObjectionPayload } from "../common/gameData";
 import getServerIps from "./utils/network";
 
 const app = express();

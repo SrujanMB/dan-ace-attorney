@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { socket } from "../socket";
-import type { ObjectionPayload } from "../../common/types";
+import type { ObjectionPayload } from "../../common/gameData";
 
 export default function CourtRoom() {
   const [activeObjection, setActiveObjection] =

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { socket } from "../socket";
-import type { Team, GameState, ObjectionPayload } from "../../common/types";
+import type { Team, GameState, ObjectionPayload } from "../../common/gameData";
 
 interface BuzzerProps {
   team: Team;
