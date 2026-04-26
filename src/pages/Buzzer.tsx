@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { socket } from "../socket";
+import { socket } from "../utils/socket";
 import type { Team, GameState, ObjectionPayload } from "../../common/gameData";
 
 interface BuzzerProps {
@@ -8,7 +8,7 @@ interface BuzzerProps {
 
 export default function Buzzer({ team }: BuzzerProps) {
   const [gameState, setGameState] = useState<GameState | null>(null);
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState(`I am ${team}`);
 
   useEffect(() => {
     socket.on("STATE_UPDATE", (state: GameState) => {
