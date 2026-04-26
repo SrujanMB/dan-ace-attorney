@@ -3,8 +3,12 @@
 > We are not officially affliated with Danganronpa or Ace attorney franchises. Plz don't sue us... :'>
 
 ## To setup and run the project:
-``` npm i ```
-``` npm run dev ```
+```sh
+npm i
+```
+```sh
+npm run dev
+```
 
 This runs both the vite client frontend and the node websockets backend for real time stuff. 
 
