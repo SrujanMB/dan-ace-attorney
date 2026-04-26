@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { routes, getRouteUrl } from "../routes";
 import { QRCodeSVG } from "qrcode.react";
 import { socket } from "../utils/socket";
+import { Events } from "../../common/events";
 import type { ObjectionPayload } from "../../common/gameData";
 import { Link } from "react-router";
 
@@ -10,16 +11,14 @@ export default function CourtRoom() {
     useState<ObjectionPayload | null>();
 
   useEffect(() => {
-    socket.on("OBJECTION_TRIGGERED", (data: ObjectionPayload) => {
+    socket.on(Events.objection.triggered, (data: ObjectionPayload) => {
       setActiveObjection(data);
     });
 
     return () => {
-      socket.off("OBJECTION_TRIGGERED");
+      socket.off(Events.objection.triggered);
     };
   }, []);
-
-  console.log(getRouteUrl(routes.PLAYER_B));
 
   return (
     <>

@@ -1,6 +1,7 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
+import { Events } from "../common/events";
 import { GameState, ObjectionPayload } from "../common/gameData";
 import getServerIps from "./utils/network";
 
@@ -27,16 +28,16 @@ io.on("connection", (socket) => {
   console.log(`User connected: ${socket.id}`);
 
   // Sync state on new connection
-  socket.emit("STATE_UPDATE", state);
+  socket.emit(Events.game.stateUpdate, state);
 
-  socket.on("SEND_OBJECTION", (data: ObjectionPayload) => {
+  socket.on(Events.objection.send, (data: ObjectionPayload) => {
     if (state.isLocked) return;
 
     state.isLocked = true;
 
     console.log(`Objection triggered by ${data.userName} (${data.teamId})`);
 
-    io.emit("OBJECTION_TRIGGERED", {
+    io.emit(Events.objection.triggered, {
       ...data,
       timestamp: Date.now(),
     });

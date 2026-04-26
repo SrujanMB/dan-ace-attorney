@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { socket } from "../utils/socket";
+import { Events } from "../../common/events";
 import type { Team, GameState, ObjectionPayload } from "../../common/gameData";
 
 interface BuzzerProps {
@@ -11,12 +12,12 @@ export default function Buzzer({ team }: BuzzerProps) {
   const [userName, setUserName] = useState(`I am ${team}`);
 
   useEffect(() => {
-    socket.on("STATE_UPDATE", (state: GameState) => {
+    socket.on(Events.game.stateUpdate, (state: GameState) => {
       setGameState(state);
     });
 
     return () => {
-      socket.off("STATE_UPDATE");
+      socket.off(Events.game.stateUpdate);
     };
   }, []);
 
@@ -24,7 +25,7 @@ export default function Buzzer({ team }: BuzzerProps) {
     if (gameState?.isLocked) return;
 
     const payload: ObjectionPayload = { teamId: team, userName };
-    socket.emit("SEND_OBJECTION", payload);
+    socket.emit(Events.objection.send, payload);
   };
 
   if (!gameState) return <div>Connecting to Courtroom...</div>;
