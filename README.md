@@ -12,7 +12,7 @@ npm run dev
 
 This runs both the vite client frontend and the node websockets backend for real time stuff. 
 
-Then just visit the vite's localhost:3000 for access to the app.
+Then just visit the vite's localhost:5000 for access to the app.
 
 The app currently has three main views: CourtRoom (at /), Buzzer (at /playerA and /playerB) for the other two players.
 
