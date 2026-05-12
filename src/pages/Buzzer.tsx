@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { socket } from "../utils/socket";
 import { Events } from "../../common/events";
 import type { Team, GameState, ObjectionPayload } from "../../common/gameData";
+import SlamDetector from "./utils/SlamDetector";
 
 interface BuzzerProps {
   team: Team;
@@ -66,6 +67,7 @@ export default function Buzzer({ team }: BuzzerProps) {
         >
           {gameState.isLocked ? "WAIT" : "OBJECTION!"}
         </button>
+        <SlamDetector callback={handleObjection} />
       </div>
     </>
   );
