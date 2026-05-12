@@ -6,7 +6,9 @@ export const routes = {
 
 export function getRouteUrl(route: string) {
   const location = window.location;
-  const serverUrl = `http://${location.hostname}:${location.port}${route}`;
+  // Switch between local address & domain name (CF Tunnel)
+  const suffix = location.port == "" ? "" : `:${location.port}`;
+  const serverUrl = `https://${location.hostname}${suffix}${route}`;
 
   return serverUrl;
 }
