@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
       timestamp: Date.now(),
     });
 
-    state.isLocked = false;
+    setTimeout(() => (state.isLocked = false), 3000);
   });
 });
 
