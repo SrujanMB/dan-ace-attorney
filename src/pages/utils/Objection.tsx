@@ -1,4 +1,6 @@
 import { motion, AnimatePresence } from "motion/react";
+import { useEffect, useRef } from "react";
+import ObjectionSound from "/shouts/objection.mp3";
 
 interface ObjectionShoutProps {
   show: boolean;
@@ -14,6 +16,19 @@ const shakeKeyframes = [
   0,
 ];
 export default function ObjectionShout({ show }: ObjectionShoutProps) {
+  // Use useRef to persist the audio object
+  const audioRef = useRef(new Audio(ObjectionSound));
+
+  useEffect(() => {
+    if (show) {
+      // Reset sound to start to allow rapid re-playing
+      audioRef.current.currentTime = 0;
+      audioRef.current.play().catch((error) => {
+        console.error("Autoplay prevented:", error);
+      });
+    }
+  }, [show]); // Only runs when shouldPlay changesa
+
   return (
     <AnimatePresence>
       {show && (
