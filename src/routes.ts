@@ -1,5 +1,6 @@
 export const routes = {
-  COURT: "/",
+  SETUP: "/",
+  COURT: "/court",
   PLAYER_A: "/playerA",
   PLAYER_B: "/playerB",
 };
