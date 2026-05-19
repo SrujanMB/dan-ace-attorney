@@ -29,39 +29,33 @@ export default function Buzzer({ team }: BuzzerProps) {
     socket.emit(Events.objection.send, payload);
   };
 
-  if (!gameState) return <div>Connecting to Courtroom...</div>;
+  if (!gameState) return <div className="w-screen h-screen bg-black text-zinc-400 flex items-center justify-center text-xl">Connecting to Courtroom...</div>;
 
   return (
-    <>
-      <div>
-        <h1>Team {team}</h1>
+    <div className="w-screen h-screen bg-black flex flex-col items-center justify-center gap-8">
+      <h1 className="text-3xl font-bold text-white m-0">
+        Team {team}
+      </h1>
 
-        <input
-          placeholder="Enter your name"
-          value={userName}
-          onChange={(e) => setUserName(e.target.value)}
-          style={{ padding: "10px", marginBottom: "20px", width: "80%" }}
-        />
+      <input
+        placeholder="Enter your name"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+        className="px-4 py-3 rounded bg-zinc-800 text-white border border-zinc-700 w-80 text-center text-lg outline-none focus:border-zinc-500"
+      />
 
-
-        <button
-          onClick={handleObjection}
-          disabled={gameState.isLocked || !userName}
-          style={{
-            width: "200px",
-            height: "200px",
-            borderRadius: "50%",
-            background: gameState.isLocked ? "#7f8c8d" : "#e74c3c",
-            color: "white",
-            fontSize: "24px",
-            fontWeight: "bold",
-            cursor: gameState.isLocked ? "not-allowed" : "pointer",
-          }}
-        >
-          {gameState.isLocked ? "WAIT" : "OBJECTION!"}
-        </button>
-        <SlamDetector callback={handleObjection} />
-      </div>
-    </>
+      <button
+        onClick={handleObjection}
+        disabled={gameState.isLocked || !userName}
+        className="w-[200px] h-[200px] rounded-full text-white text-2xl font-bold border-none cursor-pointer transition-colors"
+        style={{
+          background: gameState.isLocked ? "#3f3f46" : "#dc2626",
+          cursor: gameState.isLocked ? "not-allowed" : "pointer",
+        }}
+      >
+        {gameState.isLocked ? "WAIT" : "OBJECTION!"}
+      </button>
+      <SlamDetector callback={handleObjection} />
+    </div>
   );
 }

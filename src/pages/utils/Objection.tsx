@@ -2,6 +2,7 @@
 
 interface ObjectionShoutProps {
   side: "left" | "right";
+  onComplete?: () => void;
 }
 
 const leftVideos = [
@@ -41,9 +42,10 @@ function preloadAll() {
 }
 preloadAll();
 
-export default function ObjectionShout({ side }: ObjectionShoutProps) {
+export default function ObjectionShout({ side, onComplete }: ObjectionShoutProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [ready, setReady] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const fadeOutTimer = useRef<ReturnType<typeof setTimeout>>();
 
   const videos = side === "left" ? leftVideos : rightVideos;
 
@@ -69,8 +71,26 @@ export default function ObjectionShout({ side }: ObjectionShoutProps) {
   }, [side, videos]);
 
   useEffect(() => {
-    requestAnimationFrame(() => setReady(true));
+    requestAnimationFrame(() => setVisible(true));
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleEnded = () => {
+      setVisible(false);
+      fadeOutTimer.current = setTimeout(() => {
+        onComplete?.();
+      }, 500);
+    };
+
+    video.addEventListener("ended", handleEnded);
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+      if (fadeOutTimer.current) clearTimeout(fadeOutTimer.current);
+    };
+  }, [onComplete]);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -78,7 +98,7 @@ export default function ObjectionShout({ side }: ObjectionShoutProps) {
         ref={videoRef}
         preload="auto"
         className="w-[80%] aspect-video object-contain transition-opacity duration-500"
-        style={{ opacity: ready ? 1 : 0 }}
+        style={{ opacity: visible ? 1 : 0 }}
         playsInline
       />
     </div>

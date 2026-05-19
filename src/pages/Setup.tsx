@@ -21,21 +21,24 @@ export default function Setup() {
   }, []);
 
   return (
-    <>
-      <div>
-        <h1>SETUP (not the actual thing)</h1>
-        <h3 className="text-xl font-bold">
-          {activeObjection != null
-            ? `Team ${activeObjection.teamId}: ${activeObjection.userName} Objected!`
-            : "Nothing yet"}
-        </h3>
+    <div className="w-screen h-screen bg-black flex flex-col items-center justify-center gap-8">
+      <h1 className="text-4xl font-bold text-white m-0">
+        SETUP
+      </h1>
+
+      <div className="text-zinc-400">
+        {activeObjection != null
+          ? `Team ${activeObjection.teamId}: ${activeObjection.userName} Objected!`
+          : "Nothing yet"}
       </div>
 
-      <div className="p-8 flex flex-row justify-center gap-12">
-        <div className="flex flex-col">
-          <QRCodeSVG value={getRouteUrl(routes.PLAYER_A)} size={250} />
+      <div className="flex flex-row justify-center gap-12">
+        <div className="flex flex-col items-center gap-4">
+          <div className="bg-white p-3 rounded">
+            <QRCodeSVG value={getRouteUrl(routes.PLAYER_A)} size={200} />
+          </div>
           <Link
-            className="p-4 text-blue-400 font-bold hover:underline"
+            className="text-zinc-400 font-bold hover:text-white no-underline"
             to={routes.PLAYER_A}
             target="_blank"
             rel="noopener noreferrer"
@@ -43,10 +46,12 @@ export default function Setup() {
             Player A View
           </Link>
         </div>
-        <div className="flex flex-col">
-          <QRCodeSVG value={getRouteUrl(routes.PLAYER_B)} size={250} />
+        <div className="flex flex-col items-center gap-4">
+          <div className="bg-white p-3 rounded">
+            <QRCodeSVG value={getRouteUrl(routes.PLAYER_B)} size={200} />
+          </div>
           <Link
-            className="p-4 text-blue-400 font-bold hover:underline"
+            className="text-zinc-400 font-bold hover:text-white no-underline"
             to={routes.PLAYER_B}
             target="_blank"
             rel="noopener noreferrer"
@@ -55,12 +60,13 @@ export default function Setup() {
           </Link>
         </div>
       </div>
+
       <Link
-        className="py-8 text-white text-3xl font-bold hover:underline"
+        className="text-white text-3xl font-bold hover:text-zinc-300 no-underline mt-4"
         to={routes.COURT}
       >
         Start Court
       </Link>
-    </>
+    </div>
   );
 }
