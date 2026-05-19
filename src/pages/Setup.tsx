@@ -8,7 +8,7 @@ import { Link } from "react-router";
 
 export default function Setup() {
   const [activeObjection, setActiveObjection] =
-    useState<ObjectionPayload | null>();
+    useState<ObjectionPayload | null>(null);
 
   useEffect(() => {
     socket.on(Events.objection.triggered, (data: ObjectionPayload) => {

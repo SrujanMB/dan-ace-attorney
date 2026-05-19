@@ -43,13 +43,6 @@ export default function Buzzer({ team }: BuzzerProps) {
           style={{ padding: "10px", marginBottom: "20px", width: "80%" }}
         />
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            marginBottom: "40px",
-          }}
-        ></div>
 
         <button
           onClick={handleObjection}

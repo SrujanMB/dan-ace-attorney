@@ -27,7 +27,7 @@ export default function ObjectionShout({ show }: ObjectionShoutProps) {
         console.error("Autoplay prevented:", error);
       });
     }
-  }, [show]); // Only runs when shouldPlay changesa
+  }, [show]); // Only runs when shouldPlay changes
 
   return (
     <AnimatePresence>

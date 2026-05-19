@@ -9,6 +9,8 @@ import getServerIps from "./utils/network";
 const app = express();
 const httpServer = createServer(app);
 
+const OBJECTION_COOLDOWN_MS = 3000;
+
 const PORT = Number(process.env.SERVER_PORT) || 3000;
 const HOST = "0.0.0.0";
 
@@ -20,8 +22,6 @@ const io = new Server(httpServer, {
 });
 
 const state: GameState = {
-  teamA: { name: "Defense", score: 0 },
-  teamB: { name: "Prosecution", score: 0 },
   isLocked: false,
 };
 
@@ -74,7 +74,7 @@ io.on("connection", (socket) => {
       setGameState((s) => {
         s.isLocked = false;
       });
-    }, 3000);
+    }, OBJECTION_COOLDOWN_MS);
   });
 });
 
