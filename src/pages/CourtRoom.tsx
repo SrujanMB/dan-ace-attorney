@@ -43,41 +43,49 @@ export default function CourtRoom() {
       </div>
 
       <div className="flex-1 flex flex-row relative min-h-0">
-        <div className="w-1/2 h-full flex items-center justify-center relative">
-          {activeObjection?.teamId === "A" && (
-            <ObjectionShout
-              key={objectionKey}
-              side="left"
-              onComplete={handleComplete}
-            />
-          )}
-          <div className="absolute bottom-0 left-0 p-8 flex flex-col items-start gap-1">
-            <span className="bg-zinc-800/80 text-zinc-400 px-5 py-1.5 rounded text-xs font-semibold tracking-widest">
-              DEFENDANT
-            </span>
-            <span className="bg-zinc-800/80 text-white px-5 py-2 rounded text-xl font-bold tracking-wide">
-              {teamAName || "—"}
-            </span>
+        <div className="w-1/2 h-full flex flex-col relative">
+          <div className="flex-1 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-2">
+              <span className="bg-zinc-800/80 text-zinc-400 px-6 py-2 rounded text-lg font-semibold tracking-[0.2em]">
+                DEFENDANT
+              </span>
+              <span className="bg-zinc-800/80 text-white px-8 py-3 rounded text-4xl font-bold tracking-wide">
+                {teamAName || "—"}
+              </span>
+            </div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            {activeObjection?.teamId === "A" && (
+              <ObjectionShout
+                key={objectionKey}
+                side="left"
+                onComplete={handleComplete}
+              />
+            )}
           </div>
         </div>
 
-        <div className="w-px h-3/4 self-center bg-zinc-700" />
+        <div className="w-px h-3/4 self-center bg-zinc-700 flex-none" />
 
-        <div className="w-1/2 h-full flex items-center justify-center relative">
-          {activeObjection?.teamId === "B" && (
-            <ObjectionShout
-              key={objectionKey}
-              side="right"
-              onComplete={handleComplete}
-            />
-          )}
-          <div className="absolute bottom-0 right-0 p-8 flex flex-col items-end gap-1">
-            <span className="bg-zinc-800/80 text-zinc-400 px-5 py-1.5 rounded text-xs font-semibold tracking-widest">
-              PROSECUTOR
-            </span>
-            <span className="bg-zinc-800/80 text-white px-5 py-2 rounded text-xl font-bold tracking-wide">
-              {teamBName || "—"}
-            </span>
+        <div className="w-1/2 h-full flex flex-col relative">
+          <div className="flex-1 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-2">
+              <span className="bg-zinc-800/80 text-zinc-400 px-6 py-2 rounded text-lg font-semibold tracking-[0.2em]">
+                PROSECUTOR
+              </span>
+              <span className="bg-zinc-800/80 text-white px-8 py-3 rounded text-4xl font-bold tracking-wide">
+                {teamBName || "—"}
+              </span>
+            </div>
+          </div>
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            {activeObjection?.teamId === "B" && (
+              <ObjectionShout
+                key={objectionKey}
+                side="right"
+                onComplete={handleComplete}
+              />
+            )}
           </div>
         </div>
       </div>

@@ -7,10 +7,12 @@ interface SlamDetectorProps {
 export default function SlamDetector({ callback }: SlamDetectorProps) {
   const [threshold, setThreshold] = useState<number>(20);
   const [lastMagnitude, setLastMagnitude] = useState<number>(0);
+  const [peakForce, setPeakForce] = useState<number>(0);
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const thresholdRef = useRef(threshold);
   const callbackRef = useRef(callback);
+  const peakRef = useRef(0);
 
   useEffect(() => {
     thresholdRef.current = threshold;
@@ -30,12 +32,31 @@ export default function SlamDetector({ callback }: SlamDetectorProps) {
 
     setLastMagnitude(Number(magnitude.toFixed(2)));
 
+    if (magnitude > peakRef.current) {
+      peakRef.current = magnitude;
+    }
+
     if (magnitude > thresholdRef.current) {
       callbackRef.current();
 
       if ("vibrate" in navigator) navigator.vibrate(100);
     }
   }, []);
+
+  useEffect(() => {
+    if (!isActive) {
+      peakRef.current = 0;
+      setPeakForce(0);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setPeakForce(Number(peakRef.current.toFixed(2)));
+      peakRef.current = 0;
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [isActive]);
 
   const toggleDetection = async () => {
     if (!isActive) {
@@ -66,6 +87,9 @@ export default function SlamDetector({ callback }: SlamDetectorProps) {
       </h2>
 
       <div className="w-full flex flex-row justify-between bg-zinc-900 border border-zinc-800 rounded px-4 py-3 text-sm">
+        <span className="text-zinc-500">
+          Peak: <strong className="text-amber-400">{peakForce}</strong>
+        </span>
         <span className="text-zinc-500">
           Force: <strong className="text-zinc-300">{lastMagnitude}</strong>
         </span>
