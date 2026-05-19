@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { socket } from "../utils/socket";
 import { Events } from "../../common/events";
-import type { Team, GameState, ObjectionPayload, NamePayload } from "../../common/gameData";
+import type {
+  Team,
+  GameState,
+  ObjectionPayload,
+  NamePayload,
+} from "../../common/gameData";
 import SlamDetector from "./utils/SlamDetector";
 
 interface BuzzerProps {
@@ -34,7 +39,12 @@ export default function Buzzer({ team }: BuzzerProps) {
     socket.emit(Events.name.send, payload);
   };
 
-  if (!gameState) return <div className="w-screen h-screen bg-black text-zinc-400 flex items-center justify-center text-xl">Connecting to Courtroom...</div>;
+  if (!gameState)
+    return (
+      <div className="w-screen h-svh bg-black text-zinc-400 flex items-center justify-center text-xl">
+        Connecting to Courtroom...
+      </div>
+    );
 
   const isLocked = gameState.isLocked || !userName;
 
@@ -78,7 +88,9 @@ export default function Buzzer({ team }: BuzzerProps) {
         <span
           className="text-5xl tracking-[0.15em] block leading-tight"
           style={{
-            filter: isLocked ? "none" : "drop-shadow(0 2px 4px rgba(0,0,0,0.4))",
+            filter: isLocked
+              ? "none"
+              : "drop-shadow(0 2px 4px rgba(0,0,0,0.4))",
           }}
         >
           {isLocked ? "WAIT" : "OBJECTION!"}
