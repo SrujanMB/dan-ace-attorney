@@ -82,13 +82,13 @@ export default function SlamDetector({ callback }: SlamDetectorProps) {
 
   return (
     <div className="flex flex-col items-center gap-4 w-80">
-      <h2 className="text-zinc-400 text-sm font-semibold tracking-widest m-0">
+      <h2 className="text-purple-400 text-sm font-semibold tracking-[0.2em] m-0">
         SLAM CALIBRATION
       </h2>
 
-      <div className="w-full flex flex-row justify-between bg-zinc-900 border border-zinc-800 rounded px-4 py-3 text-sm">
+      <div className="w-full flex flex-row justify-between bg-black border border-zinc-800 px-4 py-3 text-sm">
         <span className="text-zinc-500">
-          Peak: <strong className="text-amber-400">{peakForce}</strong>
+          Peak: <strong className="text-purple-400">{peakForce}</strong>
         </span>
         <span className="text-zinc-500">
           Force: <strong className="text-zinc-300">{lastMagnitude}</strong>
@@ -109,17 +109,17 @@ export default function SlamDetector({ callback }: SlamDetectorProps) {
           step="1"
           value={threshold}
           onChange={(e) => setThreshold(Number(e.target.value))}
-          className="w-full accent-zinc-400"
+          className="w-full accent-purple-500"
         />
       </div>
 
       <button
         onClick={toggleDetection}
-        className="w-full py-2.5 rounded text-sm font-semibold tracking-wider border border-zinc-700 transition-colors"
+        className="w-full py-2.5 text-sm font-semibold tracking-[0.2em] border transition-colors"
         style={{
-          background: isActive ? "#991b1b" : "#166534",
-          color: "#fef2f2",
-          borderColor: isActive ? "#ef4444" : "#22c55e",
+          background: isActive ? "#3b0764" : "#09090b",
+          color: isActive ? "#faf5ff" : "#a855f7",
+          borderColor: isActive ? "#a855f7" : "#3b0764",
         }}
       >
         {isActive ? "STOP DETECTION" : "START DETECTION"}

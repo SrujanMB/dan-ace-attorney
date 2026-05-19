@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+@theme {
+    --font-sans: "Rajdhani", system-ui, sans-serif;
+    --color-accent: #a855f7;
+    --color-accent-dark: #7e22ce;
+}
+
 body {
     margin: 0;
     background: #000;
+    font-family: "Rajdhani", system-ui, sans-serif;
 }
 
 #root {
@@ -14,4 +21,9 @@ body {
     flex-direction: column;
     box-sizing: border-box;
     background: #000;
+}
+
+::selection {
+    background: #a855f7;
+    color: #000;
 }
