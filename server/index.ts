@@ -3,7 +3,7 @@ import { createServer } from "http";
 import { Server, Socket } from "socket.io";
 
 import { Events } from "../common/events";
-import { GameState, ObjectionPayload } from "../common/gameData";
+import { GameState, ObjectionPayload, NamePayload } from "../common/gameData";
 import getServerIps from "./utils/network";
 
 const app = express();
@@ -54,7 +54,11 @@ io.on("connection", (socket) => {
   // Send the current state to the newly connected client
   updateState(socket);
 
-  socket.on(Events.objection.send, (data: ObjectionPayload) => {
+    socket.on(Events.name.send, (data: NamePayload) => {
+      io.emit(Events.name.updated, { ...data, timestamp: Date.now() });
+    });
+
+    socket.on(Events.objection.send, (data: ObjectionPayload) => {
     if (state.isLocked) return;
 
     setGameState((s) => {

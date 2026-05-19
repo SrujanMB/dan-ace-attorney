@@ -8,3 +8,8 @@ export interface ObjectionPayload {
   teamId: Team;
   userName: string;
 }
+
+export interface NamePayload {
+  teamId: Team;
+  userName: string;
+}

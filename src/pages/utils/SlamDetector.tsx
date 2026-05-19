@@ -60,26 +60,24 @@ export default function SlamDetector({ callback }: SlamDetectorProps) {
   }, [isActive, handleMotion]);
 
   return (
-    <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
-      <h2>Slam Calibration</h2>
+    <div className="flex flex-col items-center gap-4 w-80">
+      <h2 className="text-zinc-400 text-sm font-semibold tracking-widest m-0">
+        SLAM CALIBRATION
+      </h2>
 
-      <div
-        style={{
-          marginBottom: "20px",
-          border: "1px solid #ccc",
-          padding: "10px",
-        }}
-      >
-        <p>
-          Live Force: <strong>{lastMagnitude}</strong>
-        </p>
-        <p>
-          Current Threshold: <strong>{threshold}</strong>
-        </p>
+      <div className="w-full flex flex-row justify-between bg-zinc-900 border border-zinc-800 rounded px-4 py-3 text-sm">
+        <span className="text-zinc-500">
+          Force: <strong className="text-zinc-300">{lastMagnitude}</strong>
+        </span>
+        <span className="text-zinc-500">
+          Threshold: <strong className="text-zinc-300">{threshold}</strong>
+        </span>
       </div>
 
-      <label>
-        Sensitivity Threshold:
+      <div className="w-full flex flex-col gap-2">
+        <label className="text-zinc-500 text-xs tracking-wide">
+          SENSITIVITY: {threshold}
+        </label>
         <input
           type="range"
           min="2"
@@ -87,25 +85,24 @@ export default function SlamDetector({ callback }: SlamDetectorProps) {
           step="1"
           value={threshold}
           onChange={(e) => setThreshold(Number(e.target.value))}
-          style={{ width: "100%", display: "block", margin: "10px 0" }}
+          className="w-full accent-zinc-400"
         />
-      </label>
+      </div>
 
       <button
         onClick={toggleDetection}
+        className="w-full py-2.5 rounded text-sm font-semibold tracking-wider border border-zinc-700 transition-colors"
         style={{
-          padding: "10px 20px",
-          backgroundColor: isActive ? "#ff4444" : "#44bb44",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
+          background: isActive ? "#991b1b" : "#166534",
+          color: "#fef2f2",
+          borderColor: isActive ? "#ef4444" : "#22c55e",
         }}
       >
-        {isActive ? "Stop Detection" : "Start Detection"}
+        {isActive ? "STOP DETECTION" : "START DETECTION"}
       </button>
 
-      <p style={{ fontSize: "0.8em", color: "#666" }}>
-        Note: Lower threshold = More sensitive.
+      <p className="text-zinc-600 text-xs m-0">
+        Lower threshold = more sensitive
       </p>
     </div>
   );
