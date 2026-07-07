@@ -18,4 +18,4 @@ The app currently has three main views: CourtRoom (at /), Buzzer (at /playerA an
 
 Currently using socket.io for real time stuff, react for frontend with react-router and typescript to share type safety and autocompletion between client and server code.
 
-Planning to put in tailwind and other things in there but this is just a proof of concept.
+There are some issues with video playback after some idle time due to browser power saving measures. 
