@@ -2,6 +2,9 @@
 > [!IMPORTANT]
 > We are not officially affliated with Danganronpa or Ace attorney franchises. Plz don't sue us... :'>
 
+<img width="1844" height="875" alt="image" src="https://github.com/user-attachments/assets/ff65f0a5-a958-427f-a64c-afaa4dafa72a" />
+<img width="559" height="743" alt="image" src="https://github.com/user-attachments/assets/e0749d86-a5d5-456a-8abb-546a1f47ccb8" />
+
 ## To setup and run the project:
 ```sh
 npm i
@@ -19,3 +22,6 @@ The app currently has three main views: CourtRoom (at /), Buzzer (at /playerA an
 Currently using socket.io for real time stuff, react for frontend with react-router and typescript to share type safety and autocompletion between client and server code.
 
 There are some issues with video playback after some idle time due to browser power saving measures. 
+
+
+
